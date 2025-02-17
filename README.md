@@ -1,4 +1,4 @@
-# WiFi Penetration Testing Guide
+# So1icitx's wifi hacking guide
 
 > **Disclaimer:** This guide is for educational purposes only. Use these tools exclusively on networks you own or have explicit permission to test. Unauthorized use may be illegal.
 
